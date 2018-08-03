@@ -1,0 +1,25 @@
+version: "3.5"
+services:
+  db:
+    container_name: db
+    image: mongo
+    volumes:
+      - './data/db:/data/db'
+    ports:
+      - "27017:27017"
+  server:
+    container_name: server
+    restart: always
+    build: ./server
+    volumes:
+      - './server:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    environment:
+      - PORT=5000
+      - MONGO_DB_URL=mongodb://db:27017/database
+    ports:
+      - "80:5000"
+    links:
+      - db
+    depends_on:
+      - db
