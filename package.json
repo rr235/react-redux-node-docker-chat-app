@@ -12,5 +12,12 @@
   },
   "author": "rahulr",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/rr235/chat-app#readme"
+  "homepage": "https://bitbucket.org/rr235/chat-app#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "prettier": "^1.14.0"
+  }
 }
