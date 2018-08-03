@@ -4,6 +4,11 @@
   "private": true,
   "author": "rahulr",
   "description": "Client app for chat app",
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:5000"
+    }
+  },
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
