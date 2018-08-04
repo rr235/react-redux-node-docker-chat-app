@@ -4,6 +4,7 @@ import ChatMessage from './ChatMessage';
 import JoinRoom from './JoinRoom';
 import { addChatMessage, loadChatMessage } from '../actions';
 import socketIOClient from 'socket.io-client';
+import './ChatRoom.css';
 
 const socket = socketIOClient('http://localhost:5000'); // make dynamic later
 
@@ -21,24 +22,11 @@ class ChatRoom extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.props.selected}</h2>
-        {this.joinRoom()}
-        <div>{this.getMessages()}</div>
-        <div>
-          <form action="submit" onSubmit={this.submitHandler}>
-            <label htmlFor="message">Message</label>
-            <input
-              type="text"
-              name="message"
-              id="message"
-              onChange={this.handleMessageChange}
-              value={this.state.message}
-            />
-            <input type="submit" value="Send" />
-          </form>
-        </div>
-      </div>
+      <section className="chat-room__main">
+        {this.showHeader()}
+        <div className="chat-room__message-wrapper">{this.getMessages()}</div>
+        {this.showFooter()}
+      </section>
     );
   }
 
@@ -51,6 +39,33 @@ class ChatRoom extends Component {
         key={index}
       />
     ));
+
+  showHeader = () => {
+    return this.props.selected ? (
+      <header className="chat-room__header">
+        <h2>{this.props.selected}</h2>
+        {this.joinRoom()}
+      </header>
+    ) : null;
+  };
+
+  showFooter = () => {
+    return this.props.roomData.nickname ? (
+      <footer className="chat-room__footer">
+        <form action="submit" onSubmit={this.submitHandler}>
+          <input
+            type="text"
+            name="message"
+            id="message"
+            onChange={this.handleMessageChange}
+            value={this.state.message}
+            placeholder="Enter Message"
+          />
+          <input type="submit" value="Send" />
+        </form>
+      </footer>
+    ) : null;
+  };
 
   joinRoom = () => {
     // hide join room if already joined

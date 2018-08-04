@@ -10,13 +10,13 @@ class AddRoom extends Component {
   render() {
     return (
       <form action="submit" onSubmit={this.submitHandler}>
-        <label htmlFor="txtName">Room name</label>
         <input
           type="text"
           name="txtName"
           id="txtName"
           value={this.state.name}
           onChange={this.nameHandler}
+          placeholder="Enter Room Name"
         />
         <input type="submit" value="Add" />
       </form>

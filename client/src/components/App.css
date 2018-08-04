@@ -1,0 +1,19 @@
+.app__main {
+  background: rgb(233, 233, 233);
+  border: 1px solid rgb(48, 45, 45);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app__heading {
+  background: rgb(23, 29, 36);
+  margin: 0;
+  padding: 1rem 0.5rem;
+  color: white;
+  font-weight: normal;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.app__wrapper {
+  display: flex;
+}

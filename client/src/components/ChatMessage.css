@@ -1,0 +1,39 @@
+.chat-message__main {
+  background: #397fc9;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+  font-weight: normal;
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.chat-message__main p {
+  margin: 0;
+}
+
+.chat-message__avatar {
+  width: 2rem;
+  height: 2rem;
+}
+
+.chat-message__wrapper {
+  padding-left: 0.5rem;
+}
+
+.chat-message__name {
+  font-size: 1.1rem;
+  padding-bottom: 0.25rem;
+  color: rgb(23, 29, 36);
+}
+
+.chat-message__message {
+  font-style: italic;
+  font-size: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.chat-message__time {
+  font-size: 0.65rem;
+}

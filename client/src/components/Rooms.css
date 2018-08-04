@@ -1,0 +1,55 @@
+.rooms_main {
+  background: rgb(43, 55, 68);
+  color: #757f88;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.room__header h2 {
+  font-weight: normal;
+  margin: 0.5rem;
+}
+
+.room__list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.room__list-item {
+}
+
+.room__list-item input[type="radio"] {
+  display: none;
+}
+
+.room__list-item label {
+  padding: 0.25rem 1rem;
+  width: 100%;
+  display: block;
+}
+
+.room__list-item input[type="radio"]:checked + label {
+  background: #5b8dc1;
+  color: white;
+}
+
+.room__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #757f88;
+}
+
+.room__footer input[type="text"] {
+  width: calc(100% - 5rem);
+  padding: 0.75rem 0;
+  border: none;
+  margin-bottom: 2px;
+}
+
+.room__footer input[type="submit"] {
+  width: 5rem;
+  padding: 0.75rem;
+  margin-bottom: 2px;
+}

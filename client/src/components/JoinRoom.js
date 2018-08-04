@@ -10,13 +10,13 @@ class JoinRoom extends Component {
   render() {
     return (
       <form action="submit" onSubmit={this.submitHandler}>
-        <label htmlFor="txtNickname">Nickname</label>
         <input
           type="text"
           name="txtNickname"
           id="txtNickname"
           value={this.state.nickname}
           onChange={this.nameHandler}
+          placeholder="Nickname"
         />
         <input type="submit" value="Join" />
       </form>

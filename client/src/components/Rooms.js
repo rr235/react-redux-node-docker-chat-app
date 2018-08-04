@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchRooms, selectRoom } from '../actions';
 import AddRoom from './AddRoom';
+import './Rooms.css';
 
 class Rooms extends Component {
   componentDidMount() {
@@ -10,17 +11,21 @@ class Rooms extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Chat Rooms</h2>
-        <ul>{this.getRooms()}</ul>
-        <AddRoom />
-      </div>
+      <section className="rooms_main">
+        <header className="room__header">
+          <h2>Chat Rooms</h2>
+        </header>
+        <ul className="room__list">{this.getRooms()}</ul>
+        <footer className="room__footer">
+          <AddRoom />
+        </footer>
+      </section>
     );
   }
 
   getRooms = () =>
     this.props.rooms.map(({ name }, index) => (
-      <li key={index}>
+      <li key={index} className="room__list-item">
         <input
           type="radio"
           name="rooms"

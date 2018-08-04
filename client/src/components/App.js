@@ -1,14 +1,13 @@
 import React from 'react';
 import Rooms from './Rooms';
 import ChatRoom from './ChatRoom';
+import './App.css';
 
 const App = () => (
-  <div>
-    <h1>Lets Chat</h1>
-    <div>
+  <div className="app__main">
+    <h1 className="app__heading">Let's Chat</h1>
+    <div className="app__wrapper">
       <Rooms />
-    </div>
-    <div>
       <ChatRoom />
     </div>
   </div>
