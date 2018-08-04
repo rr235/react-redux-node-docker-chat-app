@@ -14,7 +14,7 @@ class ChatMessage extends Component {
         <div>
           <p>{this.props.username}</p>
           <p>{this.props.message}</p>
-          <p>{this.props.time}</p>
+          <p>{new Date(this.props.time).toLocaleString()}</p>
         </div>
       </div>
     );

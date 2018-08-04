@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatMessage from './ChatMessage';
 import JoinRoom from './JoinRoom';
+import { addChatMessage } from '../actions';
 
 class ChatRoom extends Component {
-  state = {
-    messages: [
-      {
-        message: 'May the force be with you.',
-        username: 'Yoda',
-        time: new Date().toLocaleString()
-      },
+  // state = {
+  //   messages: [
+  //     {
+  //       message: 'May the force be with you.',
+  //       username: 'Yoda',
+  //       time: new Date().toLocaleString()
+  //     },
 
-      {
-        message: 'Dark side is more Powerful!!',
-        username: 'Darth Vader',
-        time: new Date().toLocaleString()
-      }
-    ]
-  };
+  //     {
+  //       message: 'Dark side is more Powerful!!',
+  //       username: 'Darth Vader',
+  //       time: new Date().toLocaleString()
+  //     }
+  //   ]
+  // };
 
   render() {
     return (
@@ -27,19 +28,29 @@ class ChatRoom extends Component {
         {this.joinRoom()}
         <div>{this.getMessages()}</div>
         <div>
-          <form action="submit">
+          <form action="submit" onSubmit={this.submitHandler}>
             <label htmlFor="message">Message</label>
-            <input type="text" name="message" id="message" />
-            <button>send</button>
+            <input
+              type="text"
+              name="message"
+              id="message"
+              onChange={this.handleMessageChange}
+            />
+            <input type="submit" value="Send" />
           </form>
         </div>
       </div>
     );
   }
 
-  getMessages = () =>
-    this.state.messages.map((message, index) => (
-      <ChatMessage {...message} key={index} />
+  getMessages = chats =>
+    this.props.roomData.chats.map(({ message, createdAt, nickname }, index) => (
+      <ChatMessage
+        message={message}
+        time={createdAt}
+        username={nickname}
+        key={index}
+      />
     ));
 
   joinRoom = () => {
@@ -50,11 +61,29 @@ class ChatRoom extends Component {
       <JoinRoom />
     );
   };
+
+  handleMessageChange = e => {
+    e.preventDefault();
+    this.setState({ message: e.target.value });
+  };
+
+  submitHandler = e => {
+    e.preventDefault();
+    const chat = {
+      message: this.state.message,
+      createdAt: Date.now(),
+      nickname: this.props.roomData.nickname
+    };
+    this.props.addChatMessage(chat);
+    this.setState({ message: '' });
+  };
 }
 
 const mapStateToProps = ({ selected, roomData }) => {
-  console.log(roomData);
   return { selected, roomData };
 };
 
-export default connect(mapStateToProps)(ChatRoom);
+export default connect(
+  mapStateToProps,
+  { addChatMessage }
+)(ChatRoom);

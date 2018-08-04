@@ -4,7 +4,8 @@ import {
   FETCH_ROOMS,
   CREATE_ROOM,
   SELECT_ROOM,
-  JOIN_ROOM
+  JOIN_ROOM,
+  ADD_CHAT_MESSAGE
 } from './types';
 
 export const fetchRooms = () => async dispatch => {
@@ -23,4 +24,9 @@ export const selectRoom = name => dispatch => {
 
 export const joinRoom = nickname => dispatch => {
   dispatch({ type: JOIN_ROOM, payload: nickname });
+};
+
+export const addChatMessage = chat => dispatch => {
+  // const res = await axios.post('/api/chats', chat);
+  dispatch({ type: ADD_CHAT_MESSAGE, payload: chat });
 };
