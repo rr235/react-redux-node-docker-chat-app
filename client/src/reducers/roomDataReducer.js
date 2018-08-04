@@ -1,5 +1,10 @@
 import { fromJS } from 'immutable';
-import { JOIN_ROOM, ADD_CHAT_MESSAGE, FETCH_CHATS } from '../actions/types';
+import {
+  JOIN_ROOM,
+  ADD_CHAT_MESSAGE,
+  FETCH_CHATS,
+  LOAD_CHAT_MESSAGE
+} from '../actions/types';
 
 export default function(state = { chats: [] }, action) {
   switch (action.type) {
@@ -8,6 +13,17 @@ export default function(state = { chats: [] }, action) {
       return newState.toJS();
     case ADD_CHAT_MESSAGE:
       if (action.payload.message) {
+        const chats = fromJS(state)
+          .get('chats')
+          .push(action.payload);
+        const newState = fromJS(state).merge({ chats: chats });
+        return newState.toJS();
+      } else {
+        return state;
+      }
+    case LOAD_CHAT_MESSAGE:
+      const { message, nickname } = action.payload;
+      if (message && nickname !== state.nickname) {
         const chats = fromJS(state)
           .get('chats')
           .push(action.payload);

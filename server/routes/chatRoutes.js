@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Room = mongoose.model('rooms');
 
-module.exports = app => {
+module.exports = (app, io) => {
   app.get('/api/chats', async (req, res) => {
     const { roomName } = req.query;
     const room = await Room.findOne({ name: roomName });
@@ -20,6 +20,8 @@ module.exports = app => {
 
     room.chats.push(chat);
     await room.save();
+
+    io.emit(roomName, chat);
 
     res.send(chat);
   });

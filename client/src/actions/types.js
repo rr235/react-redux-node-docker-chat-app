@@ -4,3 +4,4 @@ export const CREATE_ROOM = 'create_room';
 export const SELECT_ROOM = 'select_room';
 export const JOIN_ROOM = 'join_room';
 export const ADD_CHAT_MESSAGE = 'add_chat_message';
+export const LOAD_CHAT_MESSAGE = 'load_chat_message';

@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatMessage from './ChatMessage';
 import JoinRoom from './JoinRoom';
-import { addChatMessage } from '../actions';
+import { addChatMessage, loadChatMessage } from '../actions';
+import socketIOClient from 'socket.io-client';
+
+const socket = socketIOClient('http://localhost:5000'); // make dynamic later
 
 class ChatRoom extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selected !== this.props.selected) {
+      socket.removeAllListeners(this.props.selected);
+      socket.on(nextProps.selected, data => this.props.loadChatMessage(data));
+    }
+  }
+
   render() {
     return (
       <div>
@@ -27,7 +37,7 @@ class ChatRoom extends Component {
     );
   }
 
-  getMessages = chats =>
+  getMessages = () =>
     this.props.roomData.chats.map(({ message, createdAt, nickname }, index) => (
       <ChatMessage
         message={message}
@@ -70,5 +80,5 @@ const mapStateToProps = ({ selected, roomData }) => {
 
 export default connect(
   mapStateToProps,
-  { addChatMessage }
+  { addChatMessage, loadChatMessage }
 )(ChatRoom);
