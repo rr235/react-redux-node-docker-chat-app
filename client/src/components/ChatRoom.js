@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ChatMessage from './ChatMessage';
 
 class ChatRoom extends Component {
@@ -21,7 +22,7 @@ class ChatRoom extends Component {
   render() {
     return (
       <div>
-        <h2>Chat Room</h2>
+        <h2>{this.props.selected}</h2>
         <div>{this.getMessages()}</div>
         <div>
           <form action="submit">
@@ -40,4 +41,6 @@ class ChatRoom extends Component {
     ));
 }
 
-export default ChatRoom;
+const mapStateToProps = ({ selected }) => ({ selected });
+
+export default connect(mapStateToProps)(ChatRoom);

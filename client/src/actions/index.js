@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_CHATS, FETCH_ROOMS, CREATE_ROOM } from './types';
+import { FETCH_CHATS, FETCH_ROOMS, CREATE_ROOM, SELECT_ROOM } from './types';
 
 export const fetchRooms = () => async dispatch => {
   const res = await axios.get('/api/rooms');
@@ -9,4 +9,8 @@ export const fetchRooms = () => async dispatch => {
 export const createRoom = room => async dispatch => {
   const res = await axios.post('/api/rooms', room);
   dispatch({ type: CREATE_ROOM, payload: res.data });
+};
+
+export const selectRoom = name => dispatch => {
+  dispatch({ type: SELECT_ROOM, payload: name });
 };

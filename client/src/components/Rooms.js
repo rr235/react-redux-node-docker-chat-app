@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRooms } from '../actions';
+import { fetchRooms, selectRoom } from '../actions';
 import AddRoom from './AddRoom';
 
 class Rooms extends Component {
@@ -19,7 +19,22 @@ class Rooms extends Component {
   }
 
   getRooms = () =>
-    this.props.rooms.map(({ name }, index) => <li key={index}>{name}</li>);
+    this.props.rooms.map(({ name }, index) => (
+      <li key={index}>
+        <input
+          type="radio"
+          name="rooms"
+          id={`room-${index}`}
+          value={name}
+          onChange={this.handleSelection}
+        />
+        <label htmlFor={`room-${index}`}>{name}</label>
+      </li>
+    ));
+
+  handleSelection = e => {
+    this.props.selectRoom(e.target.value);
+  };
 }
 
 const mapStateToProps = ({ rooms }) => ({
@@ -28,5 +43,5 @@ const mapStateToProps = ({ rooms }) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchRooms }
+  { fetchRooms, selectRoom }
 )(Rooms);
