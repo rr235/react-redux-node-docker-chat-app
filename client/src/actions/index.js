@@ -18,8 +18,10 @@ export const createRoom = room => async dispatch => {
   dispatch({ type: CREATE_ROOM, payload: res.data });
 };
 
-export const selectRoom = name => dispatch => {
-  dispatch({ type: SELECT_ROOM, payload: name });
+export const selectRoom = roomName => async dispatch => {
+  dispatch({ type: SELECT_ROOM, payload: roomName });
+  const res = await axios.get('/api/chats', { params: { roomName } });
+  dispatch({ type: FETCH_CHATS, payload: res.data });
 };
 
 export const joinRoom = nickname => dispatch => {
@@ -28,6 +30,5 @@ export const joinRoom = nickname => dispatch => {
 
 export const addChatMessage = chat => async dispatch => {
   const res = await axios.post('/api/chats', chat);
-  console.log(res.data);
   dispatch({ type: ADD_CHAT_MESSAGE, payload: res.data });
 };

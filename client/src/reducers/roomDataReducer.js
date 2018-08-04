@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { JOIN_ROOM, ADD_CHAT_MESSAGE } from '../actions/types';
+import { JOIN_ROOM, ADD_CHAT_MESSAGE, FETCH_CHATS } from '../actions/types';
 
 export default function(state = { chats: [] }, action) {
   switch (action.type) {
@@ -16,6 +16,10 @@ export default function(state = { chats: [] }, action) {
       } else {
         return state;
       }
+    case FETCH_CHATS:
+      return fromJS(state)
+        .merge({ chats: action.payload })
+        .toJS();
     default:
       return state;
   }
