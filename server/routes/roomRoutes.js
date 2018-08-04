@@ -10,9 +10,10 @@ module.exports = app => {
 
   app.post('/api/rooms', async (req, res) => {
     const { name } = req.body;
-    const existingRoom = await Room.findOne({ name });
-    if (existingRoom) {
-      res.send(existingRoom);
+
+    // return if room with same name already exists
+    if (await Room.findOne({ name })) {
+      res.send({});
       return;
     }
 
