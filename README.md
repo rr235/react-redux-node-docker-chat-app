@@ -1,6 +1,22 @@
 # Chat App
 
-## Notes:
+## Run the App
+
+Clone the Repo.
+
+You can run the app using
+
+### 1. Directly from npm
+
+`npm run dev` or `npm start`
+
+Note: set `server/.env` with the values sent by email
+
+### 2. In Docker Containers
+
+`docker-compose up`
+
+## Initial Notes
 
 - Adding git ignore for `.env` file to protect mLab user details. `.env` is just for development ease. Saves on build time ;).
 - Docker is set up to `server` and `mongodb` container.
