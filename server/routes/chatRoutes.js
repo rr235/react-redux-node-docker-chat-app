@@ -1,10 +1,15 @@
 module.exports = app => {
   app.get('/api/rooms', (req, res) => {
-    res.send('List of all chat rooms.');
+    const rooms = [
+      { name: 'Episode III' },
+      { name: 'Episode IV' },
+      { name: 'Episode V' }
+    ];
+    res.send(rooms);
   });
 
   app.post('/api/rooms', (req, res) => {
-    const { room } = req.body;
+    const { name } = req.body;
     res.send('Create new chat room.');
   });
 

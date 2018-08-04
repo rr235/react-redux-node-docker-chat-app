@@ -35,7 +35,9 @@ class ChatRoom extends Component {
   }
 
   getMessages = () =>
-    this.state.messages.map((message, index) => <ChatMessage {...message} />);
+    this.state.messages.map((message, index) => (
+      <ChatMessage {...message} key={index} />
+    ));
 }
 
 export default ChatRoom;

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchRooms } from '../actions';
 
 class Rooms extends Component {
-  state = {
-    rooms: [
-      { name: 'Episode III' },
-      { name: 'Episode IV' },
-      { name: 'Episode V' }
-    ]
-  };
+  componentDidMount() {
+    this.props.fetchRooms();
+  }
 
   render() {
     return (
@@ -19,7 +17,14 @@ class Rooms extends Component {
   }
 
   getRooms = () =>
-    this.state.rooms.map(({ name }, index) => <li key={index}>{name}</li>);
+    this.props.rooms.map(({ name }, index) => <li key={index}>{name}</li>);
 }
 
-export default Rooms;
+function mapStateToProps({ rooms }) {
+  return { rooms };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchRooms }
+)(Rooms);
