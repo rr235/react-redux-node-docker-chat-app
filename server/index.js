@@ -20,6 +20,17 @@ require('./routes/userRoutes')(app);
 require('./routes/roomRoutes')(app);
 require('./routes/chatRoutes')(app, io);
 
+if (process.env.NODE_ENV === 'production') {
+  // to serve production assets (css and js)
+  app.use(express.static('build'));
+
+  // serve index.html if the request doesnt match any of the defined route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  });
+}
+
 // connect to mongodb
 connect();
 
