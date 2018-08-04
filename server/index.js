@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const connect = require('./services/connectivity');
 require('./models/Room');
+require('./models/Nickname');
+require('./models/Chat');
 
 const app = express();
 const port = process.env.PORT || 5000;
