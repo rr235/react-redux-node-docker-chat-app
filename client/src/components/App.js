@@ -4,7 +4,7 @@ import ChatRoom from './ChatRoom';
 
 const App = () => (
   <div>
-    <h1>Star Wars Chat</h1>
+    <h1>Lets Chat</h1>
     <div>
       <Rooms />
     </div>

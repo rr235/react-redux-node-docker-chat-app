@@ -10,7 +10,7 @@ class AddRoom extends Component {
   render() {
     return (
       <form action="submit" onSubmit={this.submitHandler}>
-        <label htmlFor="txtRoom">Room name</label>
+        <label htmlFor="txtName">Room name</label>
         <input
           type="text"
           name="txtName"

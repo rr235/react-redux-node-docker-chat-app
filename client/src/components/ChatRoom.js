@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatMessage from './ChatMessage';
+import JoinRoom from './JoinRoom';
 
 class ChatRoom extends Component {
   state = {
@@ -23,10 +24,11 @@ class ChatRoom extends Component {
     return (
       <div>
         <h2>{this.props.selected}</h2>
+        {this.joinRoom()}
         <div>{this.getMessages()}</div>
         <div>
           <form action="submit">
-            <label htmlFor="message" />
+            <label htmlFor="message">Message</label>
             <input type="text" name="message" id="message" />
             <button>send</button>
           </form>
@@ -39,8 +41,20 @@ class ChatRoom extends Component {
     this.state.messages.map((message, index) => (
       <ChatMessage {...message} key={index} />
     ));
+
+  joinRoom = () => {
+    // hide join room if already joined
+    return this.props.roomData.nickname ? (
+      <h3>Joined as {this.props.roomData.nickname}</h3>
+    ) : (
+      <JoinRoom />
+    );
+  };
 }
 
-const mapStateToProps = ({ selected }) => ({ selected });
+const mapStateToProps = ({ selected, roomData }) => {
+  console.log(roomData);
+  return { selected, roomData };
+};
 
 export default connect(mapStateToProps)(ChatRoom);
