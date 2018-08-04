@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchRooms } from '../actions';
+import AddRoom from './AddRoom';
 
 class Rooms extends Component {
   componentDidMount() {
@@ -12,6 +13,7 @@ class Rooms extends Component {
       <div>
         <h2>Chat Rooms</h2>
         <ul>{this.getRooms()}</ul>
+        <AddRoom />
       </div>
     );
   }
@@ -20,9 +22,9 @@ class Rooms extends Component {
     this.props.rooms.map(({ name }, index) => <li key={index}>{name}</li>);
 }
 
-function mapStateToProps({ rooms }) {
-  return { rooms };
-}
+const mapStateToProps = ({ rooms }) => ({
+  rooms
+});
 
 export default connect(
   mapStateToProps,
