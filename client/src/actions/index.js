@@ -26,7 +26,8 @@ export const joinRoom = nickname => dispatch => {
   dispatch({ type: JOIN_ROOM, payload: nickname });
 };
 
-export const addChatMessage = chat => dispatch => {
-  // const res = await axios.post('/api/chats', chat);
-  dispatch({ type: ADD_CHAT_MESSAGE, payload: chat });
+export const addChatMessage = chat => async dispatch => {
+  const res = await axios.post('/api/chats', chat);
+  console.log(res.data);
+  dispatch({ type: ADD_CHAT_MESSAGE, payload: res.data });
 };

@@ -70,7 +70,8 @@ class ChatRoom extends Component {
   submitHandler = e => {
     e.preventDefault();
     const chat = {
-      message: this.state.message,
+      roomName: this.props.selected,
+      message: JSON.parse(JSON.stringify(this.state.message)), // find a workaround later
       createdAt: Date.now(),
       nickname: this.props.roomData.nickname
     };
