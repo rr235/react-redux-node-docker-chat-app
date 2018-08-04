@@ -8,6 +8,10 @@ import socketIOClient from 'socket.io-client';
 const socket = socketIOClient('http://localhost:5000'); // make dynamic later
 
 class ChatRoom extends Component {
+  state = {
+    message: ''
+  };
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected !== this.props.selected) {
       socket.removeAllListeners(this.props.selected);
@@ -29,6 +33,7 @@ class ChatRoom extends Component {
               name="message"
               id="message"
               onChange={this.handleMessageChange}
+              value={this.state.message}
             />
             <input type="submit" value="Send" />
           </form>
