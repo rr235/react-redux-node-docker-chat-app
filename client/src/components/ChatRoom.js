@@ -5,22 +5,6 @@ import JoinRoom from './JoinRoom';
 import { addChatMessage } from '../actions';
 
 class ChatRoom extends Component {
-  // state = {
-  //   messages: [
-  //     {
-  //       message: 'May the force be with you.',
-  //       username: 'Yoda',
-  //       time: new Date().toLocaleString()
-  //     },
-
-  //     {
-  //       message: 'Dark side is more Powerful!!',
-  //       username: 'Darth Vader',
-  //       time: new Date().toLocaleString()
-  //     }
-  //   ]
-  // };
-
   render() {
     return (
       <div>
